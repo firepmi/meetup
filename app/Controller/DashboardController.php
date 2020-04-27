@@ -461,7 +461,7 @@ Class DashboardController extends AppController
 		$email->from('cake@cakephp.org');
 		$email->to(array('firepmi320@gmail.com' => 'You'));
 		$email->subject('My title');
-		$email->config(array('empty'));
+		// $email->config(array('empty'));
 		$email->emailFormat('html');
 		$email->template('html', 'default');
 		$result = $email->send();
