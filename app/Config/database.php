@@ -71,7 +71,7 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => '',
+		'password' => 'Spartan',
 		'database' => 'webapo7t_cake-apin',
 		'prefix' => '',
 		//'encoding' => 'utf8',
