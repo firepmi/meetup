@@ -23,7 +23,7 @@
 
                                     <!-- Horizontal Form Content -->
                                     
-									<?php  echo $this->Form->create('BodyTypes', array('type' => 'post', 'id'=>'form-login','class'=>'form-horizontal form-bordered','url' => array('controller' => 'Dashboard', 'action' => 'add_page'))); ?>
+									<?php  echo $this->Form->create('BodyTypes', array('type' => 'post', 'id'=>'form-login','class'=>'form-horizontal form-bordered','url' => array('controller' => 'Dashboard', 'action' => 'email_users'))); ?>
 									    <div class="form-group">
                                             <label class="col-md-3 control-label" for="example-hf-email">Send to...</label>
                                             <div class="col-md-9">

@@ -1,4 +1,8 @@
 <?php 
+
+App::uses('CakeEmail', 'Network/Email');
+App::uses('File', 'Utility');
+
 Class DashboardController extends AppController
 {
 	var $helpers = array('Form','Html','Js','Paginator','Time','Text','Number','Session');
@@ -443,18 +447,26 @@ Class DashboardController extends AppController
 		$this->checkIsLoggedIn();
 		if($this->request->is('post')){ 
 			$this->Page->set($this->request->data);
-			if ($this->Page->validates()) {
-				// it validated logic
-				$this->Page->save($this->request->data);
-				$this->Session->setFlash('Added','success');
-				$this->redirect(array('controller'=>'Dashboard','action'=>'manage_pages','admin' => true));
-			} 
-			else {
-			// didn't validate logic
-				$errors = $this->Race->validationErrors;
-				$this->set('errors',$errors); 
-				return $errors;  
-			} 
+			$this->sendEmail($this->request->data);
+			
+			$this->Session->setFlash('Email sent successfully!','success');
+			// $this->redirect(array('controller'=>'Dashboard','action'=>'index','admin' => true));			
 		}
+	}
+	public function sendEmail($data) {
+		$email = new CakeEmail(array('log' => true));
+		$email->reset();
+		$email->transport('debug');
+
+		$email->from('cake@cakephp.org');
+		$email->to(array('firepmi320@gmail.com' => 'You'));
+		$email->subject('My title');
+		$email->config(array('empty'));
+		$email->emailFormat('html');
+		$email->template('html', 'default');
+		$result = $email->send();
+
+		// $this->assertTextContains('<h1>HTML Ipsum Presents</h1>', $result['message']);
+		// $this->assertLineLengths($result['message']);
 	}
 }
