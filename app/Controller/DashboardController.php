@@ -454,7 +454,7 @@ Class DashboardController extends AppController
 		}
 	}
 	public function sendEmail($data) {
-		$email = new CakeEmail(array('log' => true));
+		$email = new CakeEmail();
 		$email->reset();
 		$email->transport('debug');
 
