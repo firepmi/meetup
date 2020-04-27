@@ -1,4 +1,4 @@
-# CakePHP
+# MeetUp Backend - CakePHP
 
 [![Latest Stable Version](https://poser.pugx.org/cakephp/cakephp/v/stable.svg)](https://packagist.org/packages/cakephp/cakephp)
 [![License](https://poser.pugx.org/cakephp/cakephp/license.svg)](https://packagist.org/packages/cakephp/cakephp)
@@ -7,7 +7,6 @@
 
 CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC.
 Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
-
 
 ## Some Handy Links
 
@@ -29,7 +28,6 @@ Our primary goal is to provide a structured framework that enables PHP users at 
 
 [Cake Software Foundation](https://cakefoundation.org) - Promoting development related to CakePHP
 
-
 ## Get Support!
 
 [#cakephp](https://webchat.freenode.net/?channels=#cakephp) on irc.freenode.net - Come chat with us, we have cake
@@ -39,7 +37,6 @@ Our primary goal is to provide a structured framework that enables PHP users at 
 [GitHub Issues](https://github.com/cakephp/cakephp/issues) - Got issues? Please tell us!
 
 [Roadmaps](https://github.com/cakephp/cakephp/wiki#roadmaps) - Want to contribute? Get involved!
-
 
 ## Contributing
 

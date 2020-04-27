@@ -133,6 +133,21 @@
                                 <!-- END Widget -->
                             </div>
 							
+                            <div class="col-sm-6 col-lg-3">
+                                <!-- Widget -->
+                                <a href="<?php echo $this->html->url('/admin/dashboard/email_users/', true);?>" class="widget widget-hover-effect1">
+                                    <div class="widget-simple">
+                                        <div class="widget-icon pull-left themed-background-autumn animation-fadeIn">
+                                            <i class="gi gi-file"></i>
+                                        </div>
+                                        <h3 class="widget-content text-right animation-pullDown">
+                                            <strong>Email Users</strong><br>
+                                            <small>Sned Email To Users</small>
+                                        </h3>
+                                    </div>
+                                </a>
+                                <!-- END Widget -->
+                            </div>
 						</div>
                         <div class="row hide">
                             <div class="col-sm-6 col-lg-3">
