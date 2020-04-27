@@ -1,0 +1,26 @@
+<?php
+
+class Likes extends AppModel {
+	
+	var $name = 'Likes';
+   // var $useTable = false;
+	
+	public $belongsTo=array(
+       'User' =>array(
+        'className' => 'User',
+        'foreignKey' => 'id',
+        'fields'=>array('User.id','User.username','User.email','User.gender','User.profilePic','User.date_of_birth','User.user_age','User.address','User.about_me','User.body_type','User.looking_for','User.longest_relationship','User.kids','User.like_percentage','User.unlike_percentage','User.vedio_url'), 
+        'counterCache' => true, 
+        ),
+       'Likes' =>array(
+        'className' => 'Likes',
+        'foreignKey' => 'UserID',
+        'fields'=>array('Likes.id','Likes.UserId','Likes.likedby','Likes.likess','Likes.dislikes','Likes.report'), 
+        'counterCache' => true, 
+        ),
+    );
+    
+	
+	 
+	
+}

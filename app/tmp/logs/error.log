@@ -1,0 +1,21 @@
+2020-04-27 18:32:00 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /admin/img/favicon.png?url=admin%2Fimg%2Ffavicon.png
+Stack Trace:
+#0 E:\AccountWork\michael\kurt\MeetUp\app\webroot\index.php(117): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2020-04-27 18:32:04 Error: [MissingViewException] View file "Dashboard\admin_email_users.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Dashboard\\admin_email_users.ctp',
+)
+Request URL: /admin/dashboard/email_users/?url=admin%2Fdashboard%2Femail_users%2F
+Stack Trace:
+#0 E:\AccountWork\michael\kurt\MeetUp\lib\Cake\View\View.php(470): View->_getViewFileName('Dashboard\\admin...')
+#1 E:\AccountWork\michael\kurt\MeetUp\lib\Cake\Controller\Controller.php(963): View->render(NULL, NULL)
+#2 E:\AccountWork\michael\kurt\MeetUp\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 E:\AccountWork\michael\kurt\MeetUp\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(DashboardController), Object(CakeRequest))
+#4 E:\AccountWork\michael\kurt\MeetUp\app\webroot\index.php(117): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
