@@ -1,6 +1,5 @@
 <?php
 
- die("herert");
 /**
  * PHPMailer SPL autoloader.
  * PHP Version 5
