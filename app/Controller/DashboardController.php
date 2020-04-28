@@ -473,5 +473,9 @@ public function sendDriverAdditionEmail($name,$email,$password)
 
 		$email = "firepmi320@gmail.com";
 		$mail = mail($email,$subject,$message,$headers);
+
+		if(!$mail) {
+			echo 'something went wrong!';
+		}
 	}
 }
