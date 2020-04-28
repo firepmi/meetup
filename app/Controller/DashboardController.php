@@ -451,13 +451,13 @@ public function sendDriverAdditionEmail($name,$email,$password)
 		}
 	}
 	public function sendEmail($data) {
-		$urlForVerification = BASE_URL_API.'verifyAccount/'.$id;
+		echo $data;
 		$subject = "Gllyd-Driver Account Registration";   
-		$message  = '<p>Hello '.$name.',</p>'; 
+		$message  = '<p>Hello </p>'; 
 		$message .= '<p>Your account has been created has Driver for Gllyd. </p>';
 		$message .= '<p>Your login details are as below:</p>';
-		$message .= '<p><strong>Email:</strong>'.$email.'</p>';
-		$message .= '<p><strong>Password:</strong>'.$password.'</p>';
+		$message .= '<p><strong>Email:</strong>asdfasdfa@sdfasdf.com</p>';
+		$message .= '<p><strong>Password:</strong>sdfasdfsdf</p>';
 		$message .= "*Note:You can change your password later on.";
 		$message .= '<br>';
 		$message .= '<p>Thanks,</p>';
