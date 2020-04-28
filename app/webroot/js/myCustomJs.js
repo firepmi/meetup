@@ -47,3 +47,13 @@ $(document).on("click", ".deleteMe", function () {
     },
   });
 });
+
+$(document).on("ready", function () {
+  $(".emailTo").on("click", function () {
+    if (this.checked == true && this.value == 1) {
+      $("input[name='mailUsers']").prop("disabled", true);
+    } else {
+      $("input[name='mailUsers']").prop("disabled", false);
+    }
+  });
+});

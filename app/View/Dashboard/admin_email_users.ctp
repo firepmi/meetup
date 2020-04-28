@@ -25,10 +25,19 @@
                                     
 									<?php  echo $this->Form->create('BodyTypes', array('type' => 'post', 'id'=>'form-login','class'=>'form-horizontal form-bordered','url' => array('controller' => 'Dashboard', 'action' => 'email_users'))); ?>
 									    <div class="form-group">
-                                            <label class="col-md-3 control-label" for="example-hf-email">Send to...</label>
+                                            <label class="col-md-3 control-label" for="example-hf-email">Send to</label>
                                             <div class="col-md-9">
-                                                <input type="radio" name="page_status" checked value='1'> All Users&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <input type="radio" name="page_status" value='0'> Specific Person
+                                                <input type="radio" name="emailTo" id="all-user" class="emailTo" checked value='1'><label for="all-user"> &nbsp;&nbsp;All Users&nbsp;&nbsp;&nbsp;&nbsp;</label><br/>
+                                                <input type="radio" name="emailTo" id="specific-user" class="emailTo" value='0'><label for="specific-user"> &nbsp;&nbsp;Specific Person</label><br/>
+                                                <input list="users" name="mailUsers" id="mailUsers" style="margin-top:10px" disabled />
+                                                <datalist id="users">
+                                                <?php  if(isset($data) and !empty($data)){ $i=1; foreach($data as $key=>$value){ ?>                                                
+                                                    <option value="<?php  echo $value['User']['email'];?>">
+                                                <?php $i++;  } }?>
+                                                </datalist>
+                                            </div>
+                                            <div class="col-md-9">
+                                                
                                             </div>
                                         </div>
                                         <div class="form-group">

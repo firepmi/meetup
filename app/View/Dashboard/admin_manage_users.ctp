@@ -36,6 +36,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Birth Day</th>
+                                            <th>Profile Video</th>
                                             <th>Status</th>
                                             <th>Member Type</th>
 											<th class="text-center">Actions</th>
@@ -54,7 +55,12 @@
 											<?php }?>
 											 <td><a href="javascript:void(0)"><?php  echo $value['User']['username'];?></a></td>
                                             <td><?php  echo $value['User']['email'];?></td>
-                                            <td><?php  echo $value['User']['date_of_birth'];?></td>   
+                                            <td><?php  echo $value['User']['date_of_birth'];?></td>
+                                            <?php if(!empty($value['User']['videoImage'])){?>   
+											<td class="text-center"><img width="64px" height="64px"  src="<?php echo $this->webroot.'img/user_profile_pics/'.$value['User']['videoImage']; ?>" alt="video"></td>
+											<?php } else {?>
+											<td class="text-center"><img src="<?php  echo $this->webroot;?>img/placeholders/avatars/avatar2.jpg" alt="video"></td>
+											<?php }?>
 											<td>
 											<?php if($value['User']['status']=="0"){?>
 											<span class="label label-success">ACTIVE</span>

@@ -82,7 +82,7 @@ Class DashboardController extends AppController
 	public function admin_manage_users() {
 		$this->layout="dashboard";
 		$this->checkIsLoggedIn();
-		$getUsersList=$this->User->find('all',array('fields'=>array('User.id','User.username','User.email','User.profilePic','User.status','User.PaymentStatus','User.date_of_birth'),'recursive'=>-1));
+		$getUsersList=$this->User->find('all',array('fields'=>array('User.id','User.username','User.email','User.profilePic','User.status','User.PaymentStatus','User.date_of_birth','User.vedio_url','User.videoImage'),'recursive'=>-1));
 		$this->set('data', $getUsersList);
 		
 
@@ -200,7 +200,7 @@ Class DashboardController extends AppController
 	public function admin_manage_media() {
 		$this->layout="dashboard";
 		$this->checkIsLoggedIn();
-		$getMediaList=$this->Media->find('all',array('order'=>array('Media.id'=>'desc')));
+		$getMediaList=$this->User->find('all',array('fields'=>array('User.vedio_url'),'recursive'=>-1));
 		$this->set('data', $getMediaList);
 
 	}
@@ -458,15 +458,23 @@ Class DashboardController extends AppController
 	public function admin_email_users() {
 		$this->layout="dashboard";
 		$this->checkIsLoggedIn();
-		if($this->request->is('post')){ 
-			// $this->Page->set($this->request->data);
-			$this->sendEmail($this->request->data);
+		$getUsersList=$this->User->find('all',array('fields'=>array('User.email'),'recursive'=>-1));
+		$this->set('data', $getUsersList);	
+		if($this->request->is('post')){				
+			if($this->params["data"]["emailTo"] == "1") {
+				$this->sendEmail($this->request->data, $getUsersList);	
+			}
+			else if($this->params["data"]["mailUsers"] != null && $this->params["data"]["mailUsers"] != "" ) {
+				$users = array();
+				$users[] = $this->params["data"]["mailUsers"];
+				$this->sendEmail($this->request->data, $users);
+			}
 			
 			$this->Session->setFlash('Email sent successfully!','success');
-			// $this->redirect(array('controller'=>'Dashboard','action'=>'index','admin' => true));			
+			$this->redirect(array('controller'=>'Dashboard','action'=>'index','admin' => true));			
 		}
 	}
-	public function sendEmail($data) {
+	public function sendEmail($data, $users) {		
 		$mail = new PHPMailer(true);
 
 		try {
@@ -488,9 +496,11 @@ Class DashboardController extends AppController
 				)
 			);
 			//Recipients
-			$mail->setFrom('from@example.com', 'MeetUp Admin');
-			$mail->addAddress('firepmi_320@hotmail.com', 'Mobile World');     // Add a recipient
-			$mail->addAddress('ericpo19320@hotmail.com');               // Name is optional			
+			$mail->setFrom('from@meetup.com', 'MeetUp Admin');
+			
+			foreach($users as $user) {
+				$mail->addAddress($user);  
+			}              
 			// $mail->addCC('cc@example.com');
 			// $mail->addBCC('bcc@example.com');
 
@@ -501,41 +511,18 @@ Class DashboardController extends AppController
 			// Content
 			$mail->isHTML(true);                                  // Set email format to HTML
 			$mail->Subject = $data["page_title"];
-			$mail->Body    = $data["page_content"];
+			// $mail->Body    = $data["page_content"];
+			$template = file_get_contents("../View/Emails/html/email.html", true);
+			$template = str_replace('$EMAILTITILE', $data["page_title"], $template);
+			$template = str_replace('$EMAILCONTENT', $data["page_content"], $template);
+			$mail->Body = $template;
 			// $mail->AltBody = $data["page_content"];
 
 			$mail->send();
 			// echo 'Message has been sent';
-			error_log("Message has been sent");
 		} catch (Exception $e) {
 			error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
 			// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 		}
-	// 	$email = new CakeEmail();
-	// 	$email->reset();
-	// 	$email->transport('Smtp');
-	// 	$email->config(array('log' => true));
-	// 	$email->smtpOptions = array(
-	// 		'port'=>'587', 
-	// 		'timeout'=>'30',
-	// 		'auth' => true,
-	// 		'host' => 'ssl://smtp.gmail.com',
-	// 		'username'=>'firepmi320@gmail.com',
-	// 		'password'=>'GetOut!0322',
-	//    );
-	
-	// 	/* Set delivery method */
-	// 	$email->delivery = 'smtp';
-
-	// 	$email->from('cake@cakephp.org');
-	// 	$email->to(array('firepmi_320@hotmail.com' => 'You'));
-	// 	$email->subject('My title');
-	// 	$email->config(array('empty'));
-	// 	$email->emailFormat('html');
-	// 	$email->template('html', 'default');
-	// 	$result = $email->send();
-
-		// $this->assertTextContains('<h1>HTML Ipsum Presents</h1>', $result['message']);
-		// $this->assertLineLengths($result['message']);
 	}
 }
