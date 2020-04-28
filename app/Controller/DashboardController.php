@@ -1,8 +1,5 @@
 <?php 
 
-App::uses('CakeEmail', 'Network/Email');
-App::uses('File', 'Utility');
-
 Class DashboardController extends AppController
 {
 	var $helpers = array('Form','Html','Js','Paginator','Time','Text','Number','Session');
