@@ -26,6 +26,9 @@ function deleteMes(id, modelName) {
 }
 
 $(document).on("click", ".deleteMe", function () {
+  if (!confirm("Are you sure to delete this user?")) {
+    return;
+  }
   var whichtr = $(this).parent().parent().parent().remove();
   whichtr.remove();
   var id = $(this).attr("id");
@@ -40,6 +43,31 @@ $(document).on("click", ".deleteMe", function () {
       if (json.status == "1") {
         $(".forSuccess").removeClass("hide");
         $(".message").text(json.message);
+      } else {
+        $(".forError").removeClass("hide");
+        $(".message").text(json.message);
+      }
+    },
+  });
+});
+
+$(document).on("click", ".deleteVideo", function () {
+  if (!confirm("Are you sure to remove this video?")) {
+    return;
+  }
+  var id = $(this).attr("id");
+  var modelName = $(this).attr("modelName");
+  $.ajax({
+    url: BASE_URL + "delete_video",
+    //dataType:'JSON',
+    type: "post",
+    data: { id: id, modelName: modelName },
+    success: function (result) {
+      var json = $.parseJSON(result); // create an object with the key of the array
+      if (json.status == "1") {
+        $(".forSuccess").removeClass("hide");
+        $(".message").text(json.message);
+        location.reload();
       } else {
         $(".forError").removeClass("hide");
         $(".message").text(json.message);

@@ -252,7 +252,29 @@ Class DashboardController extends AppController
 		 }
 		  
 	}
-	
+	public function admin_delete_video(){
+		
+		if($this->request->is('post')){
+			
+			 $id=$this->request->data['id'];
+			 $modelName=$this->request->data['modelName'];
+			 $this->$modelName->id = $id;
+
+			if($this->$modelName->saveField("vedio_url",""))
+			{
+				$this->$modelName->saveField("videoImage","");
+				echo json_encode(array('status'=>'1','message'=>'Deleted!'));
+				 die;
+			}
+			else{
+				echo json_encode(array('status'=>'0','message'=>'Error!'));
+				die;
+			} 
+		   
+		 
+		}		 
+   }
+
 	//for manage races 
 	public function admin_manage_races() {
 		$this->layout="dashboard";

@@ -86,7 +86,8 @@
 											<td class="text-center">
                                                 <div class="btn-group">
                                                     <!--<a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a> -->
-                                                    <a href="javascript:void(0)" id="<?php echo $value['User']['id'];?>" modelName="User" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger deleteMe"><i class="fa fa-times"></i></a>
+                                                    <a href="javascript:void(0)" id="<?php echo $value['User']['id'];?>" modelName="User" data-toggle="tooltip" title="Delete Account" class="btn btn-xs btn-danger deleteMe"><i class="fa fa-times"></i></a>
+                                                    <a style = "margin-left: 5px;" href="javascript:void(0)" id="<?php echo $value['User']['id'];?>" modelName="User" data-toggle="tooltip" title="Remove Video" class="btn btn-xs btn-danger deleteVideo"><i class="fa fa-eraser"></i></a>
                                                 </div>
                                             </td>
                                             
