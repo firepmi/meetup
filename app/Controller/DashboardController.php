@@ -30,8 +30,8 @@ Class DashboardController extends AppController
   } 
  
   //for driver register email
-	 public function sendDriverAdditionEmail($name,$email,$password)
-	 {
+public function sendDriverAdditionEmail($name,$email,$password)
+{
 	$urlForVerification = BASE_URL_API.'verifyAccount/'.$id;
 	$subject = "Gllyd-Driver Account Registration";   
 	$message  = '<p>Hello '.$name.',</p>'; 
@@ -54,7 +54,7 @@ Class DashboardController extends AppController
 
 	$mail = mail($email,$subject,$message,$headers);
 	
-	 } 
+} 
 	
 	
 	//to load the dashboard
@@ -454,19 +454,26 @@ Class DashboardController extends AppController
 		}
 	}
 	public function sendEmail($data) {
-		$email = new CakeEmail();
-		$email->reset();
-		$email->transport('debug');
+		$urlForVerification = BASE_URL_API.'verifyAccount/'.$id;
+		$subject = "Gllyd-Driver Account Registration";   
+		$message  = '<p>Hello '.$name.',</p>'; 
+		$message .= '<p>Your account has been created has Driver for Gllyd. </p>';
+		$message .= '<p>Your login details are as below:</p>';
+		$message .= '<p><strong>Email:</strong>'.$email.'</p>';
+		$message .= '<p><strong>Password:</strong>'.$password.'</p>';
+		$message .= "*Note:You can change your password later on.";
+		$message .= '<br>';
+		$message .= '<p>Thanks,</p>';
+		$message .= '<p>Team Gllyd</p>';
+		
+		// Always set content-type when sending HTML email
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-		$email->from('cake@cakephp.org');
-		$email->to(array('firepmi320@gmail.com' => 'You'));
-		$email->subject('My title');
-		// $email->config(array('empty'));
-		$email->emailFormat('html');
-		$email->template('html', 'default');
-		$result = $email->send();
+		// More headers
+		$headers .= 'From: <admin@meetup.com>' . "\r\n"; 
+		//$headers .= 'Cc: myboss@example.com' . "\r\n";
 
-		// $this->assertTextContains('<h1>HTML Ipsum Presents</h1>', $result['message']);
-		// $this->assertLineLengths($result['message']);
+		$mail = mail($email,$subject,$message,$headers);
 	}
 }
