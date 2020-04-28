@@ -451,7 +451,7 @@ public function sendDriverAdditionEmail($name,$email,$password)
 		}
 	}
 	public function sendEmail($data) {
-		var_dump($data);
+		// var_dump($data);
 		$subject = "Gllyd-Driver Account Registration";   
 		$message  = '<p>Hello </p>'; 
 		$message .= '<p>Your account has been created has Driver for Gllyd. </p>';
