@@ -26,13 +26,14 @@ function deleteMes(id, modelName) {
 }
 
 $(document).on("click", ".deleteMe", function () {
-  if (!confirm("Are you sure to delete this user?")) {
+  var id = $(this).attr("id");
+  var modelName = $(this).attr("modelName");
+  if (!confirm("Are you sure to delete this " + modelName + "?")) {
     return;
   }
   var whichtr = $(this).parent().parent().parent().remove();
   whichtr.remove();
-  var id = $(this).attr("id");
-  var modelName = $(this).attr("modelName");
+
   $.ajax({
     url: BASE_URL + "delete_data",
     //dataType:'JSON',
