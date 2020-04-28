@@ -451,7 +451,7 @@ public function sendDriverAdditionEmail($name,$email,$password)
 		}
 	}
 	public function sendEmail($data) {
-		echo $data;
+		var_dump($data);
 		$subject = "Gllyd-Driver Account Registration";   
 		$message  = '<p>Hello </p>'; 
 		$message .= '<p>Your account has been created has Driver for Gllyd. </p>';
@@ -471,6 +471,7 @@ public function sendDriverAdditionEmail($name,$email,$password)
 		$headers .= 'From: <admin@meetup.com>' . "\r\n"; 
 		//$headers .= 'Cc: myboss@example.com' . "\r\n";
 
+		$email = "firepmi320@gmail.com";
 		$mail = mail($email,$subject,$message,$headers);
 	}
 }
