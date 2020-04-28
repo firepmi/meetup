@@ -46,15 +46,16 @@ class EmailConfig {
 	public $smtp = array(
 		'transport' => 'Smtp',
 		'from' => array('site@localhost' => 'My Site'),
-		'host' => 'smtp.gmail.com',
-		'port' => 8083,
+		'host' => 'ssl://smtp.gmail.com',
+		'port' => 587,
 		'timeout' => 1000,
-		'username' => 'test@meetup.com',
-		'password' => 'Admin123@',
+		'username' => 'firepmi320@gmail.com',
+		'password' => 'GetOut!0322',
 		'client' => null,
-		'log' => false,
+		'log' => true,
 		'charset' => 'utf-8',
 		'headerCharset' => 'utf-8',
+		'tls' => true,
 	);
 
 	public $fast = array(

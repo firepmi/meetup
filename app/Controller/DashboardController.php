@@ -1,5 +1,8 @@
 <?php 
 
+App::uses('CakeEmail', 'Network/Email');
+App::uses('File', 'Utility');
+
 Class DashboardController extends AppController
 {
 	var $helpers = array('Form','Html','Js','Paginator','Time','Text','Number','Session');
@@ -27,8 +30,8 @@ Class DashboardController extends AppController
   } 
  
   //for driver register email
-public function sendDriverAdditionEmail($name,$email,$password)
-{
+	 public function sendDriverAdditionEmail($name,$email,$password)
+	 {
 	$urlForVerification = BASE_URL_API.'verifyAccount/'.$id;
 	$subject = "Gllyd-Driver Account Registration";   
 	$message  = '<p>Hello '.$name.',</p>'; 
@@ -51,7 +54,7 @@ public function sendDriverAdditionEmail($name,$email,$password)
 
 	$mail = mail($email,$subject,$message,$headers);
 	
-} 
+	 } 
 	
 	
 	//to load the dashboard
@@ -451,31 +454,31 @@ public function sendDriverAdditionEmail($name,$email,$password)
 		}
 	}
 	public function sendEmail($data) {
-		// var_dump($data);
-		$subject = "Gllyd-Driver Account Registration";   
-		$message  = '<p>Hello </p>'; 
-		$message .= '<p>Your account has been created has Driver for Gllyd. </p>';
-		$message .= '<p>Your login details are as below:</p>';
-		$message .= '<p><strong>Email:</strong>asdfasdfa@sdfasdf.com</p>';
-		$message .= '<p><strong>Password:</strong>sdfasdfsdf</p>';
-		$message .= "*Note:You can change your password later on.";
-		$message .= '<br>';
-		$message .= '<p>Thanks,</p>';
-		$message .= '<p>Team Gllyd</p>';
-		
-		// Always set content-type when sending HTML email
-		$headers = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+		$email = new CakeEmail();
+		$email->reset();
+		$email->transport('Smtp');
+		$email->config(array('log' => true));
+		$email->smtpOptions = array(
+			'port'=>'587', 
+			'timeout'=>'30',
+			'auth' => true,
+			'host' => 'ssl://smtp.gmail.com',
+			'username'=>'firepmi320@gmail.com',
+			'password'=>'GetOut!0322',
+	   );
+	
+		/* Set delivery method */
+		$email->delivery = 'smtp';
 
-		// More headers
-		$headers .= 'From: <admin@meetup.com>' . "\r\n"; 
-		//$headers .= 'Cc: myboss@example.com' . "\r\n";
+		$email->from('cake@cakephp.org');
+		$email->to(array('firepmi_320@hotmail.com' => 'You'));
+		$email->subject('My title');
+		$email->config(array('empty'));
+		$email->emailFormat('html');
+		$email->template('html', 'default');
+		$result = $email->send();
 
-		$email = "firepmi320@gmail.com";
-		$mail = mail($email,$subject,$message,$headers);
-
-		if(!$mail) {
-			echo 'something went wrong!';
-		}
+		// $this->assertTextContains('<h1>HTML Ipsum Presents</h1>', $result['message']);
+		// $this->assertLineLengths($result['message']);
 	}
 }
