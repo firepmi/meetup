@@ -795,6 +795,25 @@ Class ApiController extends AppController
 		echo json_encode($result);die;  
 	}
 
+	public function getImages(){
+        if($this->request->is('post')){
+			$data=$this->data;
+			$getImages=$this->Image->find('all',array('conditions'=>array('Image.user_id'=>$data['user_id']),'fields'=>array('Image.image')));
+			$images = Array();
+			for($i = 0; $i < count($getImages); $i++) {
+				$images[] = $getImages[$i]["Image"]["image"];
+			}
+	     	if($images){
+				$result = array('status'=>1,'res'=>$images, ); 	
+			}
+			else{
+				$result = array('status'=>0,'message'=>'No user record found'); 
+			}
+				
+		}
+		 
+		echo json_encode($result);die;  
+	}
 	//Home api
 	public function Allprofile(){
         if($this->request->is('post')){
