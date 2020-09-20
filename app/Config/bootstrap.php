@@ -109,7 +109,7 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
-define("BASE_URL_API","http://3.8.95.229/api/"); 
-define("BASE_URL_USER_IMAGES","http://3.8.95.229/img/user_profile_pics/"); 
-define("BASE_URL_USER_VEDIO","http://3.8.95.229/img/user_profile_vedio/"); 
-define("BASE_URL_USER_VIDEO_IMAGES","http://3.8.95.229/img/user_video_thumbs/"); 
+define("BASE_URL_API","https://looklistenandfeel.online/api/"); 
+define("BASE_URL_USER_IMAGES","https://looklistenandfeel.online/img/user_profile_pics/"); 
+define("BASE_URL_USER_VEDIO","https://looklistenandfeel.online/img/user_profile_vedio/"); 
+define("BASE_URL_USER_VIDEO_IMAGES","https://looklistenandfeel.online/img/user_video_thumbs/"); 

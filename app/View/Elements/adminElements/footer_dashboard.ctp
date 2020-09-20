@@ -99,7 +99,7 @@
 		'myCustomJs.js',
 		 ));?>
 		<script>$(function(){ TablesDatatables.init(); });</script>
-		<script> //var BASE_URL='<?php echo 'http://3.8.95.229'.$this->base.'/admin/Dashboard/';?>';</script>
+		<script> //var BASE_URL='<?php echo 'https://looklistenandfeel.online'.$this->base.'/admin/Dashboard/';?>';</script>
 		
     </body>
 </html>

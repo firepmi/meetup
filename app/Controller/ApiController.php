@@ -3,7 +3,7 @@ Class ApiController extends AppController
 {
 	var $helpers = array('Form','Html','Js','Paginator','Time','Text','Number','Session');
 	var $components = array('Cookie','Session','RequestHandler','Email');
-	public $uses = array('User','Ride','Driver','VehicleListing','Rating','PromoCode','CakeEmail','Network/Email','Like','Comment','CommentReply','CommentLike','UserSetting','CommentReplyLike','Race','BodyTypes','ContactUsersData');
+	public $uses = array('User','Ride','Driver','VehicleListing','Rating','PromoCode','CakeEmail','Network/Email','Like','Comment','CommentReply','CommentLike','UserSetting','CommentReplyLike','Race','BodyTypes','ContactUsersData','Image');
 	
 	public function test()
 	{
@@ -755,6 +755,45 @@ Class ApiController extends AppController
 		echo json_encode($result);die;  
 	}
 
+	public function uploadImage(){
+        if($this->request->is('post')){
+			$data=$this->data;
+	        $getUsersData=$this->User->find('first',array('conditions'=>array('User.id'=>$data['user_id']),'fields'=>array('User.username', 'User.profilePic','User.videoImage')));
+	     	if($getUsersData){
+				//profile pic
+				$image_name = '';
+				if(!empty($_FILES['profilePic']['name'])){
+					$ext_details = pathinfo($_FILES['profilePic']['name']);
+					$ext = strtolower($ext_details['extension']);
+					$image = $this->getGUID();
+					$guid = substr($image, 1, -1);
+					$image_name=$guid.'.'.$ext;	
+					$file_path = basename($image_name);	
+					$destination = realpath('../webroot/img/user_profile_pics/'). '/';
+					move_uploaded_file($_FILES['profilePic']['tmp_name'], $destination.$file_path);
+				}
+				$user_id = $data['user_id'];	
+	            
+	            $new_arr['user_id'] =$user_id;				
+				$new_arr['image'] = $image_name;
+				
+				if($this->Image->set($new_arr))
+				{					
+					$result = array('status'=>1,'message'=>'image uploaded.'); 
+					$this->Image->save($new_arr);
+				}
+				else{
+					$result = array('status'=>0,'message'=>'image not uploaded.');  
+				}
+			}
+				else{
+					$result = array('status'=>0,'message'=>'No user record found'); 
+				}
+				
+		}
+		 
+		echo json_encode($result);die;  
+	}
 
 	//Home api
 	public function Allprofile(){

@@ -41,7 +41,7 @@
                                         <tr>
                                             <td class="text-center"><?php  echo $i;?></td>
 											<?php if($value['User']['profile_image']){?>
-											<td class="text-center"><img width="64px" height="64px"  src="<?php echo 'http://3.8.95.229'.$this->webroot.'img/user_profile_pics/'.$value['User']['profile_image']; ?>" alt="avatar" class="img-circle"></td>
+											<td class="text-center"><img width="64px" height="64px"  src="<?php echo 'https://looklistenandfeel.online'.$this->webroot.'img/user_profile_pics/'.$value['User']['profile_image']; ?>" alt="avatar" class="img-circle"></td>
 											<?php } else {?>
 											<td class="text-center"><img src="<?php  echo $this->webroot;?>img/placeholders/avatars/avatar2.jpg" alt="avatar" class="img-circle"></td>
 											<?php }?>

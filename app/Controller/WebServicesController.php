@@ -239,14 +239,14 @@ Class WebServicesController extends AppController
 				$mediaDetailData['user_id']=$mediaDetail['Media']['user_id'];
 				if($mediaDetail['Media']['video'])
 				{
-				$mediaDetailData['video']='http://3.8.95.229'.$this->base.$this->webroot.'video/'.$mediaDetail['Media']['video'];
+				$mediaDetailData['video']='https://looklistenandfeel.online'.$this->base.$this->webroot.'video/'.$mediaDetail['Media']['video'];
 				}
 				 else{
 					 $mediaDetailData['video']="";
 				 }
 				 if($mediaDetail['Media']['image'])
 				{
-				$mediaDetailData['image']='http://3.8.95.229'.$this->webroot.'img/media/'.$mediaDetail['Media']['image'];
+				$mediaDetailData['image']='https://looklistenandfeel.online'.$this->webroot.'img/media/'.$mediaDetail['Media']['image'];
 				}
 				 else{
 					$mediaDetailData['image']="";
@@ -373,7 +373,7 @@ Class WebServicesController extends AppController
 				   $finalListArray[$key]["event_type"]=$values['EventCategory']['name'];
 				   if($values['Event']['image']!="")
 				   {
-				   $finalListArray[$key]['image']='http://3.8.95.229'.$this->webroot.'img/media/'.$values['Event']['image'];
+				   $finalListArray[$key]['image']='https://looklistenandfeel.online'.$this->webroot.'img/media/'.$values['Event']['image'];
 				   }
 				   else  
 				   {
@@ -430,7 +430,7 @@ Class WebServicesController extends AppController
 					  }
 					  if($values['User']['profile_image'])
 					  {
-						$finalListArray[$key]['profile_image'] ='http://3.8.95.229'.$this->webroot.'img/user_profile_pics/'.$values['User']['profile_image'];
+						$finalListArray[$key]['profile_image'] ='https://looklistenandfeel.online'.$this->webroot.'img/user_profile_pics/'.$values['User']['profile_image'];
 					 }
 				     else
 					 {
@@ -471,7 +471,7 @@ Class WebServicesController extends AppController
 					  }
 					  if($values['User']['profile_image'])
 					  {
-						$finalListArray[$key]['profile_image'] ='http://3.8.95.229'.$this->webroot.'img/user_profile_pics/'.$values['User']['profile_image'];
+						$finalListArray[$key]['profile_image'] ='https://looklistenandfeel.online'.$this->webroot.'img/user_profile_pics/'.$values['User']['profile_image'];
 					 }
 				     else
 					 {
@@ -508,7 +508,7 @@ Class WebServicesController extends AppController
 				if($getUsersList['Event']['image']!="")
 				{
 				
-				$finalDataArray['image']='http://3.8.95.229'.$this->webroot.'img/media/'.$getUsersList['Event']['image'];
+				$finalDataArray['image']='https://looklistenandfeel.online'.$this->webroot.'img/media/'.$getUsersList['Event']['image'];
 				}
 				else{
 					$finalDataArray['image']=""; 
@@ -542,7 +542,7 @@ Class WebServicesController extends AppController
 				 $finalNoti[$key]['time']=strtotime($value['Media']['created']);
 				 if($value['User']['profile_image'])
 				 {
-				 $finalNoti[$key]['profile_image'] ='http://3.8.95.229'.$this->webroot.'img/user_profile_pics/'.$value['User']['profile_image'];
+				 $finalNoti[$key]['profile_image'] ='https://looklistenandfeel.online'.$this->webroot.'img/user_profile_pics/'.$value['User']['profile_image'];
 				 }
 				 else{
 				 $finalNoti[$key]['profile_image']="";  
@@ -646,7 +646,7 @@ Class WebServicesController extends AppController
 		   
 		     if($getUsersData['User']['profile_image'])
 			  {
-				 $getUsersData['User']['profile_image'] ='http://3.8.95.229'.$this->webroot.'img/user_profile_pics/'.$getUsersData['User']['profile_image'];
+				 $getUsersData['User']['profile_image'] ='https://looklistenandfeel.online'.$this->webroot.'img/user_profile_pics/'.$getUsersData['User']['profile_image'];
 			  }
 			   else{
 				   $getUsersData['User']['profile_image'] ="";
@@ -1020,7 +1020,7 @@ Class WebServicesController extends AppController
 				$file_path = basename($video_name);
 				$destination = realpath('../webroot/video/chats/'). '/';
 				move_uploaded_file($_FILES['video']['tmp_name'], $destination.$file_path);
-				$videoPath='http://3.8.95.229'.$this->webroot.'video/chats/'.$video_name;	
+				$videoPath='https://looklistenandfeel.online'.$this->webroot.'video/chats/'.$video_name;	
 			}
 			else{
 				$video_name='';
@@ -1039,7 +1039,7 @@ Class WebServicesController extends AppController
 				$file_path = basename($image_name);
 				$destination = realpath('../webroot/img/chat_images/'). '/';
 				move_uploaded_file($_FILES['image']['tmp_name'], $destination.$file_path);
-			   $imagePath='http://3.8.95.229'.$this->webroot.'img/chat_images/'.$image_name;	
+			   $imagePath='https://looklistenandfeel.online'.$this->webroot.'img/chat_images/'.$image_name;	
 			   
 			}else{
 				$image_name='';

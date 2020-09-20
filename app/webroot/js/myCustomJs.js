@@ -1,4 +1,4 @@
-var BASE_URL = "http://3.8.95.229/admin/Dashboard/";
+var BASE_URL = "https://looklistenandfeel.online/admin/Dashboard/";
 function deleteMes(id, modelName) {
   //var whichtr = $(this).closest("tr");
   var whichtr = $(this).parent().parent().parent().remove();

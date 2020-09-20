@@ -47,7 +47,7 @@
                                         <tr>
                                             <td class="text-center"><?php  echo $i;?></td>
 											 <td><?php  echo $type;?></td>
-											 <td><img width="64px"  height="64px"  src="<?php echo 'http://3.8.95.229'.$this->webroot.'img/media/'.$value['Media']['image']; ?>" alt="avatar" class=""></td>
+											 <td><img width="64px"  height="64px"  src="<?php echo 'https://looklistenandfeel.online'.$this->webroot.'img/media/'.$value['Media']['image']; ?>" alt="avatar" class=""></td>
 											  <td><?php  echo $value['Event']['event_name'];?></td>
 											  <?php if(!empty($value['User']['first_name'])){?>
                                              <td><?php  echo $value['User']['first_name']." ".$value['User']['last_name'];?></td>

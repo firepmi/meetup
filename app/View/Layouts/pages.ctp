@@ -29,7 +29,7 @@
 				'vendor/bootstrap.min.js',
 				'plugins.js',
 				'app.js',
-				'pages/readyComingSoon.js.js'
+				'pages/readyComingSoon.js'
 				) 
 			);
 	?>	
