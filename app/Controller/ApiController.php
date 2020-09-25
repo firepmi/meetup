@@ -496,7 +496,7 @@ Class ApiController extends AppController
 	                     	$data[$key]['user image']=@$value['profilePic'];
 					    }
 						$data[$key]['address']=@$value['address'];
-						$data[$key]['date of birth']=@$value['date_of_birth'];
+						$data[$key]['date of birth']=@$value['date_of_birth'] - date("Y");
 						$data[$key]['Body Type']=@$value['body_type'];		
 						$data[$key]['Looking For']=@$value['looking_for'];
 						$data[$key]['Longest Relationship']=@$value['longest_relationship'];
@@ -616,7 +616,8 @@ Class ApiController extends AppController
 			    }
 
 	            if(!empty($data['DOB'])){
-					$DOB = $data['DOB'];
+					$year = date("Y"); 
+					$DOB = $year - $data['DOB'];
 			    }else{
 	            	$DOB = $getUsersData['User']['date_of_birth'];
 			    }
