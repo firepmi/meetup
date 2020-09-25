@@ -110,6 +110,9 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 define("BASE_URL_API","https://looklistenandfeel.online/api/"); 
-define("BASE_URL_USER_IMAGES","https://looklistenandfeel.online/img/user_profile_pics/"); 
-define("BASE_URL_USER_VEDIO","https://looklistenandfeel.online/img/user_profile_vedio/"); 
-define("BASE_URL_USER_VIDEO_IMAGES","https://looklistenandfeel.online/img/user_video_thumbs/"); 
+// define("BASE_URL_USER_IMAGES","https://looklistenandfeel.online/img/user_profile_pics/"); 
+// define("BASE_URL_USER_VEDIO","https://looklistenandfeel.online/img/user_profile_vedio/"); 
+// define("BASE_URL_USER_VIDEO_IMAGES","https://looklistenandfeel.online/img/user_video_thumbs/"); 
+define("BASE_URL_USER_IMAGES","https://looklistenandfeel.online/app/webroot/img/user_profile_pics/"); 
+define("BASE_URL_USER_VEDIO","https://looklistenandfeel.online/app/webroot/img/user_profile_vedio/"); 
+define("BASE_URL_USER_VIDEO_IMAGES","https://looklistenandfeel.online/app/webroot/img/user_video_thumbs/"); 

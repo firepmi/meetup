@@ -195,25 +195,25 @@ Class ApiController extends AppController
 				
 				$user_info=$this->User->find('first',array('conditions'=>array('User.username'=>$data['userName'],'User.password'=>md5($data['Password']))));
 						
-				 		if($user_info){
+				if($user_info){
 
-							$new_arr['user_id'] = $user_info['User']['id'];
-							$new_arr['userName'] = $user_info['User']['username'];
-							$new_arr['paymentStatus'] = $user_info['User']['PaymentStatus'];
-							if(!empty($user_info['User']['profilePic'])){
-						 	$new_arr['profilePic']=BASE_URL_USER_IMAGES.$user_info['User']['profilePic'];
-							}
-							else
-							{
-							$new_arr['profilePic']='';
-							}
-							$result = array('status'=>1,'message'=>'Login successfully.','data'=>$new_arr);
+					$new_arr['user_id'] = $user_info['User']['id'];
+					$new_arr['userName'] = $user_info['User']['username'];
+					$new_arr['paymentStatus'] = $user_info['User']['PaymentStatus'];
+					if(!empty($user_info['User']['profilePic'])){
+					$new_arr['profilePic']=BASE_URL_USER_IMAGES.$user_info['User']['profilePic'];
+					}
+					else
+					{
+					$new_arr['profilePic']='';
+					}
+					$result = array('status'=>1,'message'=>'Login successfully.','data'=>$new_arr);
 
-						} else {
+				} else {
 
-							$result = array('status'=>0,'message'=>'Invalid email or password!');
-						}
-			 	    }				
+					$result = array('status'=>0,'message'=>'Invalid email or password!');
+				}
+			}				
 			// } else {
 
 			// 	$result = array('status'=>0,'message'=>'Data is Empty!');
@@ -537,7 +537,7 @@ Class ApiController extends AppController
 		}
 		 
 		echo json_encode($result);die;  
-	}	
+	}
 		
 		
 	//update profile (USER)
