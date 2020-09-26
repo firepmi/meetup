@@ -358,7 +358,7 @@ Class ApiController extends AppController
 			$data=$this->data;
 			if(!empty($data)){
 				$user = $data['userID']; 
-				$check_user_exist=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.username','User.online_status', 'User.profilePic', 'User.address', 'User.date_of_birth', 'User.about_me' ,'User.body_type','User.looking_for','User.longest_relationship','User.kids','User.hobbies','User.like_percentage','User.favourite_percentage','User.unlike_percentage','User.vedio_url','User.facebook_url','User.instagram_url','User.youtube_url','User.googleplus_url', 'User.last_activity','User.videoImage'),'recursive'=>0));
+				$check_user_exist=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.username','User.online_status', 'User.profilePic', 'User.address', 'User.date_of_birth', 'User.about_me' ,'User.body_type','User.looking_for','User.longest_relationship','User.kids','User.hobbies','User.like_percentage','User.favourite_percentage','User.unlike_percentage','User.vedio_url','User.height','User.last_activity','User.videoImage'),'recursive'=>0));
 				 
 				if(!empty($check_user_exist)){
 
@@ -438,10 +438,10 @@ Class ApiController extends AppController
 				        	$likes1[] = $value['likes']['likess'];
 				        }  
 				        if($value['likes']['dislikes']==1){
-				        $dislikes1[] = $value['likes']['dislikes'];
+				        	$dislikes1[] = $value['likes']['dislikes'];
 				        } 
 				        if($value['likes']['favorite']==1){
-				        $favorite[] = $value['likes']['favorite'];
+				        	$favorite[] = $value['likes']['favorite'];
 				        } 
 			        }
 
@@ -462,12 +462,12 @@ Class ApiController extends AppController
                		 	$favorite =  0;
 			    	}
 			    	if(!empty($likes1) || !empty($dislikes1)) {
-			    	$total= $Like + $DisLike;
-                	$like_percent = round($Like / $total * 100);
-                	$dislike_percent = round($DisLike / $total * 100);
+						$total= $Like + $DisLike;
+						$like_percent = round($Like / $total * 100);
+						$dislike_percent = round($DisLike / $total * 100);
                 	}else{
-                  	$like_percent = 0;
-                  	$dislike_percent = 0;
+						$like_percent = 0;
+						$dislike_percent = 0;
                		}
 
 					foreach($check_user_exist as $key=>$value){
@@ -498,16 +498,16 @@ Class ApiController extends AppController
 						$data[$key]['Longest Relationship']=@$value['longest_relationship'];
 						$data[$key]['kids']=@$value['kids'];
 						$data[$key]['Hobbies']=@$value['hobbies'];
-						$data[$key]['Like Percentage']= "$like_percent";
+						$data[$key]['Like Percentage']= "$Like";
 						$data[$key]['Favourite']= "$favorite";
-						$data[$key]['Unlike Percentage']= "$dislike_percent";
+						$data[$key]['Unlike Percentage']= "$DisLike";
 						if($value['vedio_url'])
 						{
-						$data[$key]['Vedio url']=BASE_URL_USER_IMAGES.$value['vedio_url'];
+							$data[$key]['Vedio url']=BASE_URL_USER_IMAGES.$value['vedio_url'];
 						}
 						else
 						{
-						$data[$key]['Vedio url']='';
+							$data[$key]['Vedio url']='';
 						}
 						// $data[$key]['facebook url']=$value['facebook_url'];
 						// $data[$key]['instagram url']=$value['instagram_url'];
@@ -517,21 +517,17 @@ Class ApiController extends AppController
 						//$data[$key]['Online Status']="$time";
 						$data[$key]['Online_Status']=$lastActivetime;
 						$data[$key]['videoImage'] =  $value['videoImage']?BASE_URL_USER_IMAGES.$value['videoImage']:'';
-				    }
-				
+				    }				
 					$result = array('status'=>1,'message'=>'User Profile data.','data'=>$data); 
 			    }
-			    else{
-				 
+			    else {				 
 					$result = array('status'=>0,'message'=>'Profile not found.');
 			 	}
 			}
-			else{
-			$result = array('status'=>0,'message'=>'No user record found'); 
-			}
-			
-		}
-		 
+			else {
+				$result = array('status'=>0,'message'=>'No user record found'); 
+			}			
+		}		 
 		echo json_encode($result);die;  
 	}
 		
@@ -624,10 +620,10 @@ Class ApiController extends AppController
 	            	$UserAge = $getUsersData['User']['user_age'];
 			    }
 
-	            if(!empty($data['LookingFor'])){
-					$LookingFor = $data['LookingFor'];
+	            if(!empty($data['height'])){
+					$Height = $data['height'];
 			    }else{
-	            	$LookingFor = $getUsersData['User']['looking_for'];
+	            	$Height = $getUsersData['User']['height'];
 			    }
 
 	            if(!empty($data['LongestRelationship'])){
@@ -672,30 +668,6 @@ Class ApiController extends AppController
 	            	$VedioUrl = $getUsersData['User']['vedio_url'];
 			    }
 
-	           if(!empty($data['FacebookUrl'])){
-					$FacebookUrl = $data['FacebookUrl'];
-			    }else{
-	            	$FacebookUrl = $getUsersData['User']['facebook_url'];
-			    }
-
-			    if(!empty($data['InstagramUrl'])){
-					$InstagramUrl = $data['InstagramUrl'];
-			    }else{
-	            	$InstagramUrl = $getUsersData['User']['instagram_url'];
-			    }
-
-			    if(!empty($data['YoutubeUrl'])){
-					$YoutubeUrl = $data['YoutubeUrl'];
-			    }else{
-	            	$YoutubeUrl = $getUsersData['User']['youtube_url'];
-			    }
-
-			    if(!empty($data['GoogleplusUrl'])){
-					$GoogleplusUrl = $data['GoogleplusUrl'];
-			    }else{
-	            	$GoogleplusUrl = $getUsersData['User']['googleplus_url'];
-			    }
-				
 				if(!empty($data['latitude'])){
 					$latitude = $data['latitude'];
 			    }else{
@@ -718,14 +690,11 @@ Class ApiController extends AppController
 				$new_arr['longest_relationship'] =$LongestRelationship;
 				$new_arr['kids'] =$Kids;
 				$new_arr['hobbies'] =$Hobbies;
+				$new_arr['height'] =$Height;
 				$new_arr['like_percentage'] =$LikePercentage;
 				$new_arr['favourite_percentage'] =$FavouritePercentage;
 				$new_arr['unlike_percentage'] =$UnlikePercentage;
 				$new_arr['vedio_url'] =$VedioUrl;
-				$new_arr['facebook_url'] =$FacebookUrl;
-				$new_arr['instagram_url'] =$InstagramUrl;
-				$new_arr['youtube_url'] =$YoutubeUrl;
-				$new_arr['googleplus_url'] =$GoogleplusUrl;
 				$new_arr['latitude'] =$latitude;
 				$new_arr['longitude'] =$longitude;
 				$new_arr['profilePic'] = $image_name;
@@ -743,9 +712,9 @@ Class ApiController extends AppController
 					$result = array('status'=>0,'message'=>'Profile not updated.');  
 				}
 			}
-				else{
-					$result = array('status'=>0,'message'=>'No user record found'); 
-				}
+			else{
+				$result = array('status'=>0,'message'=>'No user record found'); 
+			}
 				
 		}
 		 
