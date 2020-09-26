@@ -811,6 +811,21 @@ Class ApiController extends AppController
 		 
 		echo json_encode($result);die;  
 	}
+	public function deleteImage(){		
+		if($this->request->is('post')){
+		    $data= $this->data;
+		    $getImages=$this->Image->find('first',array('conditions'=>array('Image.id'=>$data['image_id'])));
+
+			if($getImages){
+				$this->User->delete($getImages['Image']['id']);
+             	$result = array('status'=>1,'message'=>'Image deleted succesfully.'); 
+			}
+			else {
+				$result = array('status'=>0,'message'=>'No image record found'); 
+			}
+		}
+		echo json_encode($result);die; 
+	}
 	//Home api
 	public function Allprofile(){
         if($this->request->is('post')){
