@@ -795,10 +795,10 @@ Class ApiController extends AppController
 	public function getImages(){
         if($this->request->is('post')){
 			$data=$this->data;
-			$getImages=$this->Image->find('all',array('conditions'=>array('Image.user_id'=>$data['user_id']),'fields'=>array('Image.image')));
+			$getImages=$this->Image->find('all',array('conditions'=>array('Image.user_id'=>$data['user_id']),'fields'=>array('Image.id','Image.image')));
 			$images = Array();
 			for($i = 0; $i < count($getImages); $i++) {
-				$images[] = $getImages[$i]["Image"]["image"];
+				$images[] = $getImages[$i]["Image"];
 			}
 	     	if($images){
 				$result = array('status'=>1,'res'=>$images, ); 	
