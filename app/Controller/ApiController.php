@@ -154,7 +154,7 @@ Class ApiController extends AppController
 						$data['email'] =$data['email'];
 						$data['password'] =md5($data['Password']);
 						$data['gender'] =$data['Gender'];
-						$data['date_of_birth'] =$data['DateofBirth'];
+						$data['date_of_birth'] = date("Y") - $data['DateofBirth'];
 						$data['profilePic'] =$image_name;
 						$data['latitude'] =$data['latitude'];
 						$data['longitude'] =$data['longitude'];
