@@ -358,7 +358,7 @@ Class ApiController extends AppController
 			$data=$this->data;
 			if(!empty($data)){
 				$user = $data['userID']; 
-				$check_user_exist=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.username','User.online_status', 'User.profilePic', 'User.address', 'User.date_of_birth', 'User.about_me' ,'User.body_type','User.looking_for','User.longest_relationship','User.kids','User.hobbies','User.like_percentage','User.favourite_percentage','User.unlike_percentage','User.vedio_url','User.height','User.last_activity','User.videoImage'),'recursive'=>0));
+				$check_user_exist=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.username','User.online_status', 'User.profilePic', 'User.address', 'User.date_of_birth', 'User.about_me' ,'User.body_type','User.longest_relationship','User.kids','User.hobbies','User.like_percentage','User.favourite_percentage','User.unlike_percentage','User.vedio_url','User.height','User.last_activity','User.videoImage'),'recursive'=>0));
 				 
 				if(!empty($check_user_exist)){
 
@@ -470,33 +470,33 @@ Class ApiController extends AppController
 						$dislike_percent = 0;
                		}
 
-					foreach($check_user_exist as $key=>$value){
+					foreach($check_user_exist as $key=>$value) {
 						
 						//check the last activity
-					$check_user_exist=$this->User->find('first',array('conditions'=>array('User.id'=>$value['id']),'fields'=>array('User.id','User.last_activity')));
-					
-					 if(!empty($check_user_exist)){
-						$lastTimeStamp=$check_user_exist['User']['last_activity']; 
+						$check_user_exist=$this->User->find('first',array('conditions'=>array('User.id'=>$value['id']),'fields'=>array('User.id','User.last_activity')));
 						
-						$lastActivetime=$this->getTheTimeDifference($lastTimeStamp);
-					}
-					else{
-						$lastActivetime='N/a';
-					}
-						
+						if(!empty($check_user_exist)){
+							$lastTimeStamp=$check_user_exist['User']['last_activity']; 
+							
+							$lastActivetime=$this->getTheTimeDifference($lastTimeStamp);
+						}
+						else{
+							$lastActivetime='N/a';
+						}
+							
 						$data[$key]['user name']=@$value['username'];
 						$data[$key]['online status']=@$value['online_status'];
-	                    if(!empty($value['profilePic'])){
-						 	$data[$key]['user image']=BASE_URL_USER_IMAGES.$value['profilePic'];
-					    }else{
-	                     	$data[$key]['user image']=@$value['profilePic'];
-					    }
+						if(!empty($value['profilePic'])){
+							$data[$key]['user image']=BASE_URL_USER_IMAGES.$value['profilePic'];
+						}else{
+							$data[$key]['user image']=@$value['profilePic'];
+						}
 						$data[$key]['address']=@$value['address'];
 						$data[$key]['date of birth'] = date("Y") - @$value['date_of_birth'];
 						$data[$key]['Body Type']=@$value['body_type'];		
-						$data[$key]['Looking For']=@$value['looking_for'];
 						$data[$key]['Longest Relationship']=@$value['longest_relationship'];
 						$data[$key]['kids']=@$value['kids'];
+						$data[$key]['height']=@$value['height'];
 						$data[$key]['Hobbies']=@$value['hobbies'];
 						$data[$key]['Like Percentage']= "$Like";
 						$data[$key]['Favourite']= "$favorite";
@@ -517,12 +517,12 @@ Class ApiController extends AppController
 						//$data[$key]['Online Status']="$time";
 						$data[$key]['Online_Status']=$lastActivetime;
 						$data[$key]['videoImage'] =  $value['videoImage']?BASE_URL_USER_IMAGES.$value['videoImage']:'';
-				    }				
+					}				
 					$result = array('status'=>1,'message'=>'User Profile data.','data'=>$data); 
-			    }
-			    else {				 
+				}
+				else {				 
 					$result = array('status'=>0,'message'=>'Profile not found.');
-			 	}
+				}
 			}
 			else {
 				$result = array('status'=>0,'message'=>'No user record found'); 
@@ -536,7 +536,7 @@ Class ApiController extends AppController
 	public function updateuserProfile(){
         if($this->request->is('post')){
 			$data=$this->data;
-	        $getUsersData=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.username','User.online_status', 'User.profilePic','User.videoImage', 'User.address', 'User.date_of_birth', 'User.user_age', 'User.about_me' ,'User.body_type','User.looking_for','User.longest_relationship','User.kids','User.hobbies','User.like_percentage','User.favourite_percentage','User.unlike_percentage','User.vedio_url','User.facebook_url','User.instagram_url','User.youtube_url','User.googleplus_url','User.latitude','User.longitude')));
+	        $getUsersData=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.username','User.online_status', 'User.profilePic','User.videoImage', 'User.address', 'User.date_of_birth', 'User.user_age', 'User.about_me' ,'User.body_type','User.longest_relationship','User.kids','User.hobbies','User.like_percentage','User.favourite_percentage','User.unlike_percentage','User.vedio_url','User.height','User.latitude','User.longitude')));
 	     	if($getUsersData){
 				//profile pic
 				if(!empty($_FILES['profilePic']['name'])){
@@ -686,7 +686,6 @@ Class ApiController extends AppController
 				$new_arr['body_type'] =$BodyType;
 				$new_arr['date_of_birth'] =$DOB;
 				$new_arr['user_age'] =$UserAge;
-				$new_arr['looking_for'] =$LookingFor;
 				$new_arr['longest_relationship'] =$LongestRelationship;
 				$new_arr['kids'] =$Kids;
 				$new_arr['hobbies'] =$Hobbies;
@@ -702,7 +701,7 @@ Class ApiController extends AppController
 				$this->User->id = $data['userID'];
 				if($this->User->save($new_arr))
 				{
-					$getUpdatedUsersData=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.username','User.online_status', 'User.profilePic', 'User.videoImage','User.address', 'User.date_of_birth', 'User.user_age', 'User.about_me' ,'User.body_type','User.looking_for','User.longest_relationship','User.kids','User.hobbies','User.like_percentage','User.favourite_percentage','User.unlike_percentage','User.vedio_url','User.facebook_url','User.instagram_url','User.youtube_url','User.googleplus_url','User.latitude','User.longitude')));
+					$getUpdatedUsersData=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.username','User.online_status', 'User.profilePic', 'User.videoImage','User.address', 'User.date_of_birth', 'User.user_age', 'User.about_me' ,'User.body_type','User.longest_relationship','User.kids','User.hobbies','User.like_percentage','User.favourite_percentage','User.unlike_percentage','User.vedio_url','User.facebook_url','User.instagram_url','User.youtube_url','User.googleplus_url','User.latitude','User.longitude')));
 					$dataUpdated=$getUpdatedUsersData['User'];
 					$dataUpdated['profilePic']=BASE_URL_USER_IMAGES.$image_name;
 					$dataUpdated['videoImage']=BASE_URL_USER_IMAGES.$video_image_name;
