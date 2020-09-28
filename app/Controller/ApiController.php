@@ -785,7 +785,7 @@ Class ApiController extends AppController
 		    $getImages=$this->Image->find('first',array('conditions'=>array('Image.id'=>$data['image_id'])));
 
 			if($getImages){
-				$this->User->delete($getImages['Image']['id']);
+				$this->Image->delete($getImages['Image']['id']);
              	$result = array('status'=>1,'message'=>'Image deleted succesfully.'); 
 			}
 			else {
