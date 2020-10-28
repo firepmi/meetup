@@ -1162,6 +1162,7 @@ Class ApiController extends AppController
         if($this->request->is('post')){
 	        $data= $this->data;
 			$getUsersData=$this->User->find('first',array('conditions'=>array('User.id'=>$data['userID']),'fields'=>array('User.id', 'User.vedio_url')));
+			// var_dump($_FILES);
 	        if($getUsersData){
 	            if(!empty($_FILES['vedio']['name'])){
 					$ext_details = pathinfo($_FILES['vedio']['name']);
@@ -1190,9 +1191,9 @@ Class ApiController extends AppController
 					$dataUpdated['vedio']=BASE_URL_USER_IMAGES.$image_name;
 					$result = array('status'=>1,'message'=>'User vedio uploaded.','data'=>$dataUpdated); 
 				}
-				 else{
+				else{
 					$result = array('status'=>0,'message'=>'User vedio not uploaded.');
-				 }
+				}
 			}
 			else{
 				$result = array('status'=>0,'message'=>'No user record found'); 
@@ -2477,28 +2478,28 @@ die;
 	//for email verification
 	 public function sendVerificationEmail($id,$to)
 	 {
-	$to = 'developmentweb10@gmail.com';
-	$urlForVerification = BASE_URL_API.'verifyAccount/'.$id;
-	$subject = "Taxi App-Account Registration";   
-	$message  = '<p>Hello, </p>'; 
-	$message .= '<p>Thank you for successfully register with Taxi App. </p>';
-	$message .= '<p><a href="'.$urlForVerification.'">Click Here</a>  for verify your account and then login to services.</p>';
-	$message .= '<br>';
-	$message .= '<p>Thanks,</p>';
-	$message .= '<p>Team Taxi App</p>';
+		// $to = 'developmentweb10@gmail.com';
+		$urlForVerification = BASE_URL_API.'verifyAccount/'.$id;
+		$subject = "Look, Listen & Feel Registration";   
+		$message  = '<p>Hello, </p>'; 
+		$message .= '<p>Thank you for successfully register with Look, Listen & Feel. </p>';
+		$message .= '<p><a href="'.$urlForVerification.'">Click Here</a>  for verify your account and then login to services.</p>';
+		$message .= '<br>';
+		$message .= '<p>Thanks,</p>';
+		$message .= '<p>Team Look, Listen & Feel</p>';
+		
+
+		// Always set content-type when sending HTML email
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+		// More headers
+		$headers .= 'From: <admin@meetup.com>' . "\r\n"; 
+		//$headers .= 'Cc: myboss@example.com' . "\r\n";
+
+		$mail = mail($to,$subject,$message,$headers);
 	
-
-	// Always set content-type when sending HTML email
-	$headers = "MIME-Version: 1.0" . "\r\n";
-	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-	// More headers
-	$headers .= 'From: <admin@meetup.com>' . "\r\n"; 
-	//$headers .= 'Cc: myboss@example.com' . "\r\n";
-
-	$mail = mail($to,$subject,$message,$headers);
-	
-	 } 
+	} 
 	 
 	 //uplaod image
 	 public function getGUID()
